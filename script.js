@@ -97,3 +97,30 @@ function updateUI() {
     cardImage.src = `images/${discardTopCard.suit}_${discardTopCard.value}.png.jpg`;
     document.getElementById('discard-pile').appendChild(cardImage);
 }
+let unoCalled = false;
+
+function checkUno() {
+    if (playerHand.length === 1) {
+        document.getElementById('unoButton').style.display = 'block';
+        unoCalled = false;
+        setTimeout(function() {
+            if (!unoCalled) {
+                drawCards(3); // 3枚カードを引く
+                alert("UNOを押さなかったため、3枚のカードが追加されました。");
+            }
+            document.getElementById('unoButton').style.display = 'none';
+        }, 3000); // 3秒以内にUNOボタンを押す必要がある
+    }
+}
+
+function pressUno() {
+    unoCalled = true;
+    document.getElementById('unoButton').style.display = 'none';
+    alert("UNOが宣言されました！");
+}
+
+// 例えば、カードを出す際にこのcheckUno関数を呼び出します
+function playCard(card) {
+    // カードをプレイする処理...
+    checkUno();
+}
