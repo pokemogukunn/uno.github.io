@@ -94,6 +94,6 @@ startGame(4);
 function updateUI() {
     const discardTopCard = discardPile[discardPile.length - 1];
     const cardImage = document.createElement('img');
-    cardImage.src = `images/${discardTopCard.suit}_${discardTopCard.value}.png`;
+    cardImage.src = `images/${discardTopCard.suit}_${discardTopCard.value}.png.jpg`;
     document.getElementById('discard-pile').appendChild(cardImage);
 }
