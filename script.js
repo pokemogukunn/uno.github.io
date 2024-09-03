@@ -90,3 +90,10 @@ function drawCards(playerIndex, numCards) {
 
 // ゲーム開始
 startGame(4);
+
+function updateUI() {
+    const discardTopCard = discardPile[discardPile.length - 1];
+    const cardImage = document.createElement('img');
+    cardImage.src = `images/${discardTopCard.suit}_${discardTopCard.value}.png`;
+    document.getElementById('discard-pile').appendChild(cardImage);
+}
