@@ -16,3 +16,14 @@ body {
 #deck, #players, #discard-pile {
     margin: 20px;
 }
+#playerHand, #ai1Hand, #ai2Hand, #ai3Hand {
+    display: flex;
+    margin: 10px;
+    min-height: 150px; /* カードが表示される高さ */
+}
+
+#playerHand img, #ai1Hand img, #ai2Hand img, #ai3Hand img {
+    width: 100px;
+    height: 150px;
+    margin: 5px;
+}
