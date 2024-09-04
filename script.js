@@ -124,3 +124,92 @@ function playCard(card) {
     // カードをプレイする処理...
     checkUno();
 }
+let deck = []; // 山札
+const playerHand = [];
+const ai1Hand = [];
+const ai2Hand = [];
+const ai3Hand = [];
+let unoCalled = false;
+
+// デッキを初期化する関数
+function initializeDeck() {
+    // ここにデッキのカードを初期化するコードを追加
+}
+
+// 初期手札を配る関数
+function dealInitialHands() {
+    for (let i = 0; i < 7; i++) {
+        playerHand.push(deck.pop());
+        ai1Hand.push(deck.pop());
+        ai2Hand.push(deck.pop());
+        ai3Hand.push(deck.pop());
+    }
+    updateHandDisplay();
+}
+
+// 手札を表示する関数
+function updateHandDisplay() {
+    const playerHandDiv = document.getElementById('playerHand');
+    const ai1HandDiv = document.getElementById('ai1Hand');
+    const ai2HandDiv = document.getElementById('ai2Hand');
+    const ai3HandDiv = document.getElementById('ai3Hand');
+
+    // プレイヤーの手札を表示
+    playerHandDiv.innerHTML = '';
+    playerHand.forEach(card => {
+        const cardImg = document.createElement('img');
+        cardImg.src = `images/${card}.png`; // カードの画像ファイル名を利用
+        playerHandDiv.appendChild(cardImg);
+    });
+
+    // AIの手札を裏向きで表示
+    const backCardImgSrc = 'images/back.png';
+    ai1HandDiv.innerHTML = '';
+    ai1Hand.forEach(() => {
+        const cardImg = document.createElement('img');
+        cardImg.src = backCardImgSrc;
+        ai1HandDiv.appendChild(cardImg);
+    });
+
+    ai2HandDiv.innerHTML = '';
+    ai2Hand.forEach(() => {
+        const cardImg = document.createElement('img');
+        cardImg.src = backCardImgSrc;
+        ai2HandDiv.appendChild(cardImg);
+    });
+
+    ai3HandDiv.innerHTML = '';
+    ai3Hand.forEach(() => {
+        const cardImg = document.createElement('img');
+        cardImg.src = backCardImgSrc;
+        ai3HandDiv.appendChild(cardImg);
+    });
+}
+
+// UNOボタンの処理
+function callUno() {
+    if (playerHand.length === 1) {
+        alert("UNO! が宣言されました");
+        unoCalled = true;
+    } else {
+        alert("手札が1枚ではありません！");
+    }
+}
+
+// プレイヤーの手札が残り1枚になったかをチェックする
+function checkUno() {
+    if (playerHand.length === 1 && !unoCalled) {
+        playerHand.push(deck.pop(), deck.pop(), deck.pop()); // 3枚追加
+        alert("UNO を宣言しなかったため、ペナルティとして3枚引きました。");
+        updateHandDisplay();
+    }
+}
+
+function endTurn() {
+    checkUno();
+    // その後、ターンをAIなどに移す処理
+}
+
+// ゲームの開始
+initializeDeck();
+dealInitialHands();
